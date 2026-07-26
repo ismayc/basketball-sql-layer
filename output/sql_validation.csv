@@ -1,0 +1,12 @@
+check,value,threshold,passed
+01 player table: SQL and polars agree on the player set,0.0,0.0,true
+01 player table: max |diff| over fga/pts/pps,0.0,1e-9,true
+02 clock buckets: all four buckets matched,0.0,0.0,true
+02 clock buckets: max |diff| over n/pps,0.0,1e-9,true
+03 league structure: all three league rows matched,0.0,0.0,true
+03 league structure: max |diff| over all 11 metric columns,0.0,1e-9,true
+04 lineup top-10: all ten lineups matched,0.0,0.0,true
+04 lineup top-10: max |diff| over MIN/POSS/PLUS_MINUS/net_100,0.0,1e-9,true
+05 stint summary: max relative |diff| vs polars re-derivation,1.7345887001644558e-13,1e-9,true
+06 pick curve: SQL and polars agree on the pick set,0.0,0.0,true
+06 pick curve: max |diff| over 9-pick and cumulative windows,0.0,1e-9,true
