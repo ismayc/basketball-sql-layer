@@ -1,14 +1,15 @@
 # SQL layer: the portfolio's headline tables in DuckDB
 
 **Why.** The studies' pipelines are polars/tidyverse; a front office data
-stack speaks SQL (the Suns' sibling postings name Snowflake). This layer
+stack speaks SQL (Snowflake-style warehouses are the norm in front
+offices). This layer
 re-expresses the portfolio's headline aggregates as SQL run by <abbr title="An in-process analytical SQL engine that queries CSV and parquet files directly, with no server or load step.">DuckDB</abbr>
 directly against the same raw CSV/parquet files the studies use — no load
 step, no copies — and holds the SQL to the repo's standing reconcile
 discipline.
 
 <!-- terms -->
-> **Terms used in this analysis.** Dotted-underlined terms anywhere below repeat these definitions on hover ([full glossary](../docs/glossary.md)).
+> **Terms used in this analysis.** Dotted-underlined terms anywhere below repeat these definitions on hover ([full glossary](https://github.com/ismayc/basketball-data-science/blob/main/docs/glossary.md)).
 >
 > - **xPPS** — Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
 > - **FGA** — Field-goal attempts.
