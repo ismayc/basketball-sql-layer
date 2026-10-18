@@ -88,9 +88,9 @@ def main() -> int:
     j = sql03.join(ref03, on="league", how="inner")
     cols = ["n_shots", "pps", "make", "pct_three", "pct_rim", "pct_midrange",
             "rim_make", "three_make", "corner_share_of_3s", "corner_3_make",
-            "dunks_per_1000"]
+            "dunks_per_1000", "corner_gap_ft"]
     gate("03 league structure: all three league rows matched", 3 - len(j), 0)
-    gate("03 league structure: max |diff| over all 11 metric columns",
+    gate(f"03 league structure: max |diff| over all {len(cols)} metric columns",
          max_col_diff(j, [(c, f"{c}_right") for c in cols]))
 
     # ---- 04: top lineups vs committed polars output -------------------------

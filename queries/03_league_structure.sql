@@ -1,6 +1,6 @@
 -- League shot-mix structure: NBA 2024-25 vs WNBA 2024/2025 — the table
 -- behind the corner-three rulebook finding (WNBA's near-uniform arc halves
--- corner share of threes). All twelve columns of
+-- corner share of threes). All thirteen columns of
 -- shot-quality-study/output/wnba_league_structure.csv re-expressed in SQL,
 -- including the action-family precedence (putback before alley-oop before
 -- dunk, mirroring ACTION_FAMILIES in 02_model.py).
@@ -23,6 +23,7 @@ typed AS (
         SHOT_ZONE_BASIC                                           AS zone,
         CASE WHEN SHOT_TYPE = '3PT Field Goal' THEN 3 ELSE 2 END  AS shot_value,
         CAST(SHOT_MADE_FLAG AS INTEGER)                           AS made,
+        CAST(SHOT_DISTANCE AS DOUBLE)                             AS dist,
         CASE WHEN ACTION_TYPE LIKE '%Tip%'
                OR ACTION_TYPE LIKE '%Putback%'   THEN 'putback'
              WHEN ACTION_TYPE LIKE '%Alley Oop%' THEN 'alley_oop'
@@ -47,7 +48,12 @@ SELECT
     AVG(made) FILTER (shot_value = 3
                       AND zone IN ('Left Corner 3', 'Right Corner 3'))
                                                                   AS corner_3_make,
-    AVG(CASE WHEN family = 'dunk' THEN 1.0 ELSE 0.0 END) * 1000   AS dunks_per_1000
+    AVG(CASE WHEN family = 'dunk' THEN 1.0 ELSE 0.0 END) * 1000   AS dunks_per_1000,
+    -- median shot distance, arc threes minus corner threes (ft)
+    MEDIAN(dist) FILTER (shot_value = 3 AND zone = 'Above the Break 3')
+      - MEDIAN(dist) FILTER (shot_value = 3
+                             AND zone IN ('Left Corner 3', 'Right Corner 3'))
+                                                                  AS corner_gap_ft
 FROM typed
 GROUP BY league
 ORDER BY league;
