@@ -1,4 +1,4 @@
--- Empirical pick-value curve from draft-study's model frame (567 drafted
+-- Empirical pick-value curve from draft-study's model frame (569 drafted
 -- college players, 2011-2022): P(rotation player within three seasons) by
 -- overall pick, smoothed with a 9-pick centered window and accumulated with
 -- a running window — the SQL twin of the study's "coin flip ≈ pick 28"
