@@ -1,4 +1,4 @@
--- Season summary of the 69,767-stint dataset behind the stint-RAPM model:
+-- Season summary of the 62,658-stint dataset behind the stint-RAPM model:
 -- coverage, pace bookkeeping, and the RAW home-court margin per 100
 -- possessions. The stint-RAPM intercept (+2.2/100) is the opponent-adjusted
 -- version of the same quantity; the raw margin here should land in the same
